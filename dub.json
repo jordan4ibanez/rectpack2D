@@ -1,0 +1,10 @@
+{
+	"authors": [
+		"Patryk Czachurski",
+        "jordan4ibanez (translation)"
+	],
+	"copyright": "Copyright © 2022, Patryk Czachurski",
+	"description": "A 2D rectangle packing library written in modern D",
+	"license": "MIT",
+	"name": "rectpack2d"
+}
