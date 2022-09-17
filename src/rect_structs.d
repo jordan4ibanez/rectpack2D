@@ -3,8 +3,6 @@ module rect_structs;
 import std.algorithm.mutation: swap;
 import std.algorithm.comparison: max;
 
-pragma(once);
-
 struct rect_wh(T) {
 
     int w = 0;
