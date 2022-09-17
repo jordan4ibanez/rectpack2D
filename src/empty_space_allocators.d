@@ -1,3 +1,5 @@
+module empty_space_allocators;
+
 #pragma once
 #include <array>
 #include <vector>
