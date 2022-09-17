@@ -3,13 +3,18 @@ module rect_structs;
 import std.algorithm.mutation: swap;
 import std.algorithm.comparison: max;
 
-struct rect_wh(T) {
+struct rect_wh {
 
     int w = 0;
     int h = 0;
 
+    this(const int w, const int h) {
+        this.w = w;
+        this.h = h;
+    }
+
     rect_wh flip() {
-        swap(w, h);
+        swap(this.w, this.h);
         return this;
     }
 
@@ -32,17 +37,24 @@ struct rect_wh(T) {
         return float(max_side()) / min_side() * area();
     }
 
-    void expand_with(T r) {
-        this.w = max(w, r.x + r.w);
-        this.h = max(h, r.y + r.h);
+    template t(T) {
+        void expand_with(T r) {
+            w = max(w, r.x + r.w);
+            h = max(h, r.y + r.h);
+        }
     }
-};
+}
 
 struct rect_xywh {
     int x = 0;
     int	y = 0;
     int w = 0;
     int h = 0;
+
+    this(const int w, const int h) const {
+        this.w = w;
+        this.h = h;
+    }
 
     int	area() const {
         return w * h;
@@ -54,7 +66,7 @@ struct rect_xywh {
     auto get_wh() const {
         return rect_wh(w, h);
     }
-};
+}
 
 struct rect_xywhf {
 
@@ -73,7 +85,7 @@ struct rect_xywhf {
     } 
 
     this(rect_xywh b) {
-        return rect_xywhf(b.x, b.y, b.w, b.h, false);
+        rect_xywhf(b.x, b.y, b.w, b.h, false);
     }
 
     int	area() const {
