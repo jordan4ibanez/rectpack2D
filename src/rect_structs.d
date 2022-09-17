@@ -5,18 +5,13 @@ import std.algorithm.mutation: swap;
 pragma(once);
 // #include <utility>
 
-namespace rectpack2D {
     
 	alias total_area_type = int;
 
 	struct rect_wh {
 
-		rect_wh() : w(0), h(0) {};
-
-		rect_wh(const int w, const int h) : w(w), h(h) {};
-
-		int w;
-		int h;
+		int w = 0;
+		int h = 0;
 
 		rect_wh flip() {
 			swap(w, h);
@@ -52,6 +47,7 @@ namespace rectpack2D {
 		int h;
 
 		rect_xywh() : x(0), y(0), w(0), h(0) {}
+
 		rect_xywh(const int x, const int y, const int w, const int h) : x(x), y(y), w(w), h(h) {}
 
 		int	area() const { return w * h; }
