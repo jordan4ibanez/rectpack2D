@@ -21,8 +21,12 @@ struct rect_wh(T) {
         return h < w ? h : w;
     }
 
-    int	area() const { return w * h; }
-    int perimeter() const { return 2 * w + 2 * h; }
+    int	area() const {
+        return w * h;
+    }
+    int perimeter() const {
+        return 2 * w + 2 * h;
+    }
 
     float pathological_mult() const {
         return float(max_side()) / min_side() * area();
@@ -40,8 +44,12 @@ struct rect_xywh {
     int w = 0;
     int h = 0;
 
-    int	area() const { return w * h; }
-    int perimeter() const { return 2 * w + 2 * h; }
+    int	area() const {
+        return w * h;
+    }
+    int perimeter() const {
+        return 2 * w + 2 * h;
+    }
 
     auto get_wh() const {
         return rect_wh(w, h);
@@ -68,8 +76,12 @@ struct rect_xywhf {
         return rect_xywhf(b.x, b.y, b.w, b.h, false);
     }
 
-    int	area() const { return w * h; }
-    int perimeter() const { return 2 * w + 2 * h; }
+    int	area() const {
+        return w * h;
+    }
+    int perimeter() const {
+        return 2 * w + 2 * h;
+    }
     auto get_wh() const {
         return rect_wh(w, h);
     }
