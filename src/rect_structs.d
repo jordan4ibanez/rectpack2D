@@ -3,6 +3,8 @@ module rect_structs;
 import std.algorithm.mutation: swap;
 import std.algorithm.comparison: max;
 
+alias total_area_type = int;
+
 struct rect_wh {
 
     int w = 0;
@@ -98,3 +100,5 @@ struct rect_xywhf {
         return rect_wh(w, h);
     }
 }
+
+alias space_rect = rect_xywh;
