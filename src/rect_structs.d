@@ -41,14 +41,10 @@ pragma(once);
 	};
 
 	struct rect_xywh {
-		int x;
-		int	y;
-		int w;
-		int h;
-
-		rect_xywh() : x(0), y(0), w(0), h(0) {}
-
-		rect_xywh(const int x, const int y, const int w, const int h) : x(x), y(y), w(w), h(h) {}
+		int x = 0;
+		int	y = 0;
+		int w = 0;
+		int h = 0;
 
 		int	area() const { return w * h; }
 		int perimeter() const { return 2 * w + 2 * h; }
