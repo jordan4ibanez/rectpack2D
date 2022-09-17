@@ -22,3 +22,4 @@ blah-test-*
 *.o
 *.obj
 *.lst
+*.pdb
