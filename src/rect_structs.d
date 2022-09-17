@@ -1,19 +1,26 @@
-#pragma once
-#include <utility>
+module rect_structs;
+
+import std.algorithm.mutation: swap;
+
+pragma(once);
+// #include <utility>
 
 namespace rectpack2D {
-	using total_area_type = int;
+    
+	alias total_area_type = int;
 
 	struct rect_wh {
-		rect_wh() : w(0), h(0) {}
-		rect_wh(const int w, const int h) : w(w), h(h) {}
+
+		rect_wh() : w(0), h(0) {};
+
+		rect_wh(const int w, const int h) : w(w), h(h) {};
 
 		int w;
 		int h;
 
-		auto& flip() {
-			std::swap(w, h);
-			return *this;
+		rect_wh flip() {
+			swap(w, h);
+			return this;
 		}
 
 		int max_side() const {
