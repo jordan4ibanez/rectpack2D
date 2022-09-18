@@ -1,15 +1,19 @@
 module empty_space_allocators;
 
+/*
 #pragma once
 #include <array>
 #include <vector>
 #include <type_traits>
 
 #include "rect_structs.h"
+*/
+import rect_structs;
 
-namespace rectpack2D {
-	class default_empty_spaces {
-		std::vector<space_rect> empty_spaces;
+
+public class default_empty_spaces {
+    
+	space_rect[] empty_spaces;
 
 	public:
 		void remove(const int i) {
