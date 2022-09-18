@@ -4,13 +4,13 @@ module empty_spaces;
 #pragma once
 #include "insert_and_split.h"
 */
+import rect_structs;
 
 
-
-enum class flipping_option {
+enum flipping_option {
     DISABLED,
     ENABLED
-};
+}
 
 class default_empty_spaces;
 
