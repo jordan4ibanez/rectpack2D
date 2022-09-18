@@ -9,8 +9,9 @@ import rect_structs;
 
 
 struct created_splits {
+
     int count = 0;
-    std::array<space_rect, 2> spaces;
+    space_rect[2] spaces;
 
     static auto failed() {
         created_splits result;
@@ -22,23 +23,25 @@ struct created_splits {
         return created_splits();
     }
 
-    template <class... Args>
-    created_splits(Args&&... args) : spaces({ std::forward<Args>(args)... }) {
-        count = sizeof...(Args);
+    template F(Args...) {
+        void created_splits(Args...) {
+            count = sizeof(Args);
+        }
     }
 
-    bool better_than(const created_splits& b) const {
+    bool better_than(const created_splits b) const {
         return count < b.count;
     }
 
-    explicit operator bool() const {
+    bool booly() const {
         return count != -1;
     }
-};
+}
 
-inline created_splits insert_and_split(
-    const rect_wh& im, /* Image rectangle */
-    const space_rect& sp /* Space rectangle */
+pragma(inline, always)
+created_splits insert_and_split(
+    const rect_wh im, /* Image rectangle */
+    const space_rect sp /* Space rectangle */
 ) {
     const auto free_w = sp.w - im.w;
     const auto free_h = sp.h - im.h;
@@ -49,7 +52,7 @@ inline created_splits insert_and_split(
             We'll need to look further.
         */
 
-        return created_splits::failed();
+        return created_splits.failed();
     }
 
     if (free_w == 0 && free_h == 0) {
@@ -58,7 +61,7 @@ inline created_splits insert_and_split(
             we will just delete the space and create no splits.  
         */
 
-        return created_splits::none();
+        return created_splits.none();
     }
 
     /*
