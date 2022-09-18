@@ -23,3 +23,5 @@ blah-test-*
 *.obj
 *.lst
 *.pdb
+*.exe
+*.pdb
