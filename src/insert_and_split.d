@@ -1,3 +1,5 @@
+module insert_and_split;
+
 #pragma once
 #include <array>
 #include "rect_structs.h"
