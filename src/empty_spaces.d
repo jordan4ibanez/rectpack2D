@@ -1,3 +1,5 @@
+module empty_spaces;
+
 #pragma once
 #include "insert_and_split.h"
 
