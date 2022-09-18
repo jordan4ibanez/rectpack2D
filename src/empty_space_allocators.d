@@ -9,7 +9,8 @@ module empty_space_allocators;
 #include "rect_structs.h"
 */
 import rect_structs;
-
+import std.range.primitives: popBack, back;
+import std.container.array.array: clear;
 
 public class default_empty_spaces {
     
@@ -18,7 +19,7 @@ public class default_empty_spaces {
 	public:
 		void remove(const int i) {
 			empty_spaces[i] = empty_spaces.back();
-			empty_spaces.pop_back();
+			empty_spaces.popBack();
 		}
 
 		bool add(const space_rect r) {
@@ -26,25 +27,31 @@ public class default_empty_spaces {
 			return true;
 		}
 
-		auto get_count() const {
-			return empty_spaces.size();
+		long get_count() const {
+			return empty_spaces.length;
 		}
 
 		void reset() {
 			empty_spaces.clear();
 		}
 
-		const auto& get(const int i) {
+		space_rect get(const int i) {
 			return empty_spaces[i];
 		}
-	};
+}
 
-	template <int MAX_SPACES>
-	class static_empty_spaces {
-		int count_spaces = 0;
-		std::array<space_rect, MAX_SPACES> empty_spaces;
+class static_empty_spaces {
+
+	int count_spaces = 0;
+
+	space_rect[] empty_spaces;
+
+    this(long maxSpaces) {
+        this.empty_spaces = new space_rect[maxSpaces];
+    }
 
 	public:
+
 		void remove(const int i) {
 			empty_spaces[i] = empty_spaces[count_spaces - 1];
 			--count_spaces;
@@ -72,5 +79,4 @@ public class default_empty_spaces {
 		const auto& get(const int i) {
 			return empty_spaces[i];
 		}
-	};
-}
+};
