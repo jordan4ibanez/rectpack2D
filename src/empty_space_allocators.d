@@ -46,7 +46,7 @@ class static_empty_spaces {
 
 	space_rect[] empty_spaces;
 
-    this(long maxSpaces) {
+    this(int maxSpaces) {
         this.empty_spaces = new space_rect[maxSpaces];
     }
 
@@ -58,7 +58,7 @@ class static_empty_spaces {
 		}
 
 		bool add(const space_rect r) {
-			if (count_spaces < static_cast<int>(empty_spaces.size())) {
+			if (count_spaces < empty_spaces.length) {
 				empty_spaces[count_spaces] = r;
 				++count_spaces;
 
