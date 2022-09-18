@@ -5,6 +5,8 @@ module empty_spaces;
 #include "insert_and_split.h"
 */
 import rect_structs;
+import insert_and_split;
+import empty_space_allocators;
 
 
 enum flipping_option {
@@ -12,32 +14,32 @@ enum flipping_option {
     ENABLED
 }
 
-class default_empty_spaces;
-
-// template <bool allow_flip, class empty_spaces_provider = default_empty_spaces>
+alias empty_spaces_provider = default_empty_spaces;
 
 class empty_spaces {
+
     rect_wh current_aabb;
     empty_spaces_provider spaces;
 
     bool allow_flip;
 
     this(bool allow_flip) {
-        this.allow_flip = allow_flip;
+        this.allow_flip = allow_flip;        
     }
 
     /* MSVC fix for non-conformant if constexpr implementation */
 
-    static rect_xywh make_output_rect(const int x, const int y, const int w, const int h) {
+    static rect_xywh make_output_rect(int x, int y, int w, int h) {
         return rect_xywh(x, y, w, h);
     }
 
-    static rect_xywhf make_output_rect(const int x, const int y, const int w, const int h, const bool flipped) {
+    static rect_xywhf make_output_rect(int x, int y, int w, int h, bool flipped) {
         return rect_xywhf(x, y, w, h, flipped);
     }
 
 public:
-    auto output_rect_type = allow_flip ? rect_xywhf : rect_xywh;
+    alias output_rect_type = int;
+
 
     flipping_option flipping_mode = flipping_option.ENABLED;
 
@@ -46,7 +48,7 @@ public:
     }
 
     void reset(const rect_wh r) {
-        current_aabb = {};
+        current_aabb = rect_wh();
 
         spaces.reset();
         spaces.add(rect_xywh(0, 0, r.w, r.h));
@@ -94,9 +96,7 @@ public:
                     }
                 };
 
-                created_splits try_to_insert = [&](const rect_wh img) {
-                    return insert_and_split(img, candidate_space);
-                };
+                created_splits try_to_insert = insert_and_split(img, candidate_space);
 
                 if (!allow_flip) {
                     if (const created_splits normal = try_to_insert(image_rectangle)) {
@@ -143,15 +143,15 @@ public:
         }
     }
 
-    F insert(const rect_wh image_rectangle) {
-        return insert(image_rectangle, []);
+    auto insert(rect_wh image_rectangle) {
+        return current_aabb = image_rectangle;
     }
 
     auto get_rects_aabb() const {
         return current_aabb;
     }
 
-    empty_spaces_provider get_spaces() const {
+    auto get_spaces() const {
         return spaces;
     }
 };

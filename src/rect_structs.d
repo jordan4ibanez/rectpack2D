@@ -53,7 +53,13 @@ struct rect_xywh {
     int w = 0;
     int h = 0;
 
-    this(const int w, const int h) const {
+    this(int w, int h) const {
+        this.w = w;
+        this.h = h;
+    }
+    this(int x, int y, int w, int h) {
+        this.x = x;
+        this.y = y;
         this.w = w;
         this.h = h;
     }

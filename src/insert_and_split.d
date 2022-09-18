@@ -38,13 +38,13 @@ struct created_splits {
     }
 }
 
-pragma(inline, always)
-created_splits insert_and_split(
-    const rect_wh im, /* Image rectangle */
-    const space_rect sp /* Space rectangle */
+pragma(inline)
+auto insert_and_split(
+    rect_wh im, /* Image rectangle */
+    space_rect sp /* Space rectangle */
 ) {
-    const auto free_w = sp.w - im.w;
-    const auto free_h = sp.h - im.h;
+    auto free_w = sp.w - im.w;
+    auto free_h = sp.h - im.h;
 
     if (free_w < 0 || free_h < 0) {
         /*
