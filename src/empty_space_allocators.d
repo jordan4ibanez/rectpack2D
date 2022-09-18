@@ -22,7 +22,7 @@ public class default_empty_spaces {
 		}
 
 		bool add(const space_rect r) {
-			empty_spaces.emplace_back(r);
+			empty_spaces ~= r;
 			return true;
 		}
 
