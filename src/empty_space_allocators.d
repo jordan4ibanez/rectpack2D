@@ -79,4 +79,4 @@ class static_empty_spaces {
 		final space_rect get(const int i) {
 			return empty_spaces[i];
 		}
-};
+}
