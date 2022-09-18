@@ -1,9 +1,11 @@
 module empty_spaces;
 
+/*
 #pragma once
 #include "insert_and_split.h"
+*/
 
-namespace rectpack2D {
+
 	enum class flipping_option {
 		DISABLED,
 		ENABLED
@@ -148,4 +150,4 @@ namespace rectpack2D {
 			return spaces;
 		}
 	};
-}
+
