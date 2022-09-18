@@ -10,11 +10,11 @@ module empty_space_allocators;
 */
 import rect_structs;
 import std.range.primitives: popBack, back;
-import std.container.array.array: clear;
+import std.container.array: Array;
 
 public class default_empty_spaces {
     
-	space_rect[] empty_spaces;
+	private space_rect[] empty_spaces;
 
 	public:
 		void remove(const int i) {
@@ -32,7 +32,7 @@ public class default_empty_spaces {
 		}
 
 		void reset() {
-			empty_spaces.clear();
+			empty_spaces.length = 0;
 		}
 
 		space_rect get(const int i) {
@@ -76,7 +76,7 @@ class static_empty_spaces {
 			count_spaces = 0;
 		}
 
-		const auto& get(const int i) {
+		final space_rect get(const int i) {
 			return empty_spaces[i];
 		}
 };
